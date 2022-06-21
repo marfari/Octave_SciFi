@@ -1,0 +1,19 @@
+function export_pins_to_csv(pins, pixel_size_um, filename)
+
+file = fopen(filename,'w');
+
+for i=1:length(pins)
+    dataset = pins(i);  
+    data = [i, ...
+            pixel_size_um*dataset.x, ...
+            pixel_size_um*dataset.y, ...
+            pixel_size_um*dataset.x_unaligned, ...
+            pixel_size_um*dataset.y_unaligned, ...
+            pixel_size_um*dataset.r, ...
+            dataset.position_index];
+    
+    fprintf(file,'%f\t',data);
+    fprintf(file,'\r\n');                
+end;
+
+fclose(file);
